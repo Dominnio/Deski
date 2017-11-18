@@ -1,3 +1,3 @@
 # Deski
 
-Algorytm rozwiązujący poblem optymalnego cięcia desek. 
+Algorytm rozwiązujący problem optymalnego cięcia desek. 
