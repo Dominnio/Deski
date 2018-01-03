@@ -8,16 +8,36 @@
 
 #include "Paleta.h"
 
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-#include <cstdio>
 using namespace std;
-
-
+/*
+	Konstruktor paleta(D,n) tworzy zestaw desek do wyprodukowania w naszej farbryce.
+	D - standardowa d³ugoœæ deski
+	n - liczba desek do wyprodukowania (losowowa d³ugoœæ desek z przedzia³u [0,D]).
+*/
 int main() {
-	Paleta paleta(5,10);
+	float D = 5;
+	int n = 10;
+	int liczbaProb = 100;
+	Paleta paleta(D,n);
 	paleta.wypiszPalete();
-	paleta.znajdzRozwiazanie();
+	int a = 0;
+	int k = 0;
+	// sprawdzam 100 razy czy da siê zmiescic na jednej desce, potem 100 razy czy da siê zmieœciæ na dwóch i tak dalej. Zatrzymuje siê na pierwszym, które znajdê.
+	for (int z = 1; z != n+1; z++) {
+		k = 0;
+		a = n+1;
+		while (a != z || (a > z)) {
+			paleta.potasuj();
+			a = paleta.znajdzRozwiazanie();
+			k++;
+			if (k == liczbaProb) {
+				break;
+			}
+		}
+		if (a == z) {
+			break;
+		}
+	}
+	system("pause");
 	return 0;
 }
